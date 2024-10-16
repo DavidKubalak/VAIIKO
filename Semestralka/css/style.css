@@ -1,0 +1,67 @@
+/* style.css */
+.navbar {
+    background-color: #007aff;
+}
+
+.navbar-text {
+    color: #ffffff;
+}
+
+.navbar-text:hover {
+    color: #000000;
+}
+
+.a {
+    color: #ffffff !important;
+}
+
+.a:hover {
+    color: #ffeb3b !important;
+}
+
+/* 4. Nastavenie veľkosti nadpisu */
+h1 {
+    font-size: 2.5rem;
+    color: #007bff;
+}
+
+/* 5. Zmena pozadia stránky */
+body {
+    background-color: #f8f9fa;
+}
+
+/* 6. Zmena farby pre odseky */
+p {
+    color: #6c757d;
+}
+
+/* 7. Margin pre hlavný kontajner */
+.container {
+    margin-top: 10px;
+}
+
+/* 8. Vlastný button */
+button {
+    background-color: #007bff;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+/* 9. Responzívna šírka pre kontajner */
+@media (max-width: 768px) {
+    .container {
+        width: 100%;
+    }
+}
+
+/* 10. Responzívna navigácia */
+@media (max-width: 768px) {
+    .navbar-nav {
+        flex-direction: column;
+    }
+}
