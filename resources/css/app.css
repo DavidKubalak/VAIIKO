@@ -1,3 +1,145 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+    background-color: #fafafa;
+    font-family: 'Arial', sans-serif;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-logo-text {
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #ffffff;
+    text-decoration: none;
+    letter-spacing: 1px;
+}
+
+.navbar-logo-text:hover {
+    color: #cdcdcd;
+    text-decoration: none;
+}
+
+.btn-view {
+    background-color: #28a745;
+    border-color: #28a745;
+    color: #fafafa;
+}
+
+.btn-view:hover {
+    background-color: #218838;
+    color: #ffffff;
+}
+
+.btn-edit {
+    background-color: #ffca28;
+    border-color: #ffb300;
+    color: #fafafa;
+}
+
+.btn-edit:hover {
+    background-color: #e6a800;
+    color: #ffffff;
+}
+
+.btn-delete {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    color: #fafafa;
+}
+
+.btn-delete:hover {
+    background-color: #c82333;
+    color: #ffffff;
+}
+
+.btn-post {
+    background-color: #17a2b8;
+    border-color: #138496;
+    color:  #fafafa;
+}
+
+.btn-post:hover {
+    background-color: #138496;
+    color: #ffffff;;
+}
+
+.nav-link {
+    color: #ffffff;
+}
+
+.nav-link:hover {
+    color: #cdcdcd;
+}
+
+.username-main {
+    font-size: 24px;
+    text-decoration: underline;
+}
+
+.custom-toggler {
+    border: none;
+    outline: none;
+}
+
+.navbar-toggler:focus, .navbar-toggler:active {
+    outline: none;
+    box-shadow: none;
+}
+
+.custom-toggler .navbar-toggler-icon {
+    background-image: url('data:image/svg+xml;charset=utf8,%3Csvg viewBox%3D%220 0 30 30%22 xmlns%3D%22http://www.w3.org/2000/svg%22%3E%3Cpath stroke%3D%22rgba%28255, 255, 255, 1%29%22 stroke-width%3D%222%22 stroke-linecap%3D%22round%22 stroke-miterlimit%3D%2210%22 d%3D%22M4 7h22M4 15h22M4 23h22%22/%3E%3C/svg%3E');
+}
+
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
+    background-image: url('data:image/svg+xml;charset=utf8,%3Csvg xmlns%3D%22http://www.w3.org/2000/svg%22 viewBox%3D%220 0 24 24%22 fill%3D%22none%22 stroke%3D%22white%22 stroke-width%3D%222%22 stroke-linecap%3D%22round%22 stroke-linejoin%3D%22round%22 class%3D%22feather feather-x%22%3E%3Cline x1%3D%2218%22 y1%3D%226%22 x2%3D%226%22 y2%3D%2218%22%3E%3C/line%3E%3Cline x1%3D%226%22 y1%3D%226%22 x2%3D%2218%22 y2%3D%2218%22%3E%3C/line%3E%3C/svg%3E');
+}
+
+.side-bar-text {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: #000000;
+    text-decoration: none;
+}
+
+.view-profile {
+    padding: 0.75rem 1.25rem;
+    background-color: #c8c8c8;
+    color: black;
+    border-top: 1px solid black;
+}
+
+.view-profile:hover {
+    background-color: #f1f1f1;
+}
+
+.terms-container {
+    background-color: #ffffff;
+    padding: 20px;
+}
+
+.terms-container p {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: #353535;
+    margin-bottom: 2rem;
+}
+
+.terms-container strong {
+    color: #333333;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.terms-container ul {
+    padding-left: 1.25rem;
+    list-style-type: disc;
+}
+
+.terms-container li {
+    margin-bottom: 1.5rem;
+}
