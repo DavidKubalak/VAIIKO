@@ -12,21 +12,23 @@
                 @guest
                     <li class="nav-item">
                         <a class="{{ Route::is('login') ? 'active' : '' }} nav-link" aria-current="page"
-                           href="{{ route('login') }}">Login</a>
+                           href="#">Login</a>
+{{--                        href="{{ route('login') }}"--}}
                     </li>
                     <li class="nav-item">
                         <a class="{{ Route::is('register') ? 'active' : '' }} nav-link"
-                           href="{{ route('register') }}">Register</a>
+                           href="#">Register</a>
+{{--                        href="{{ route('register') }}"--}}
                     </li>
                 @endguest
                 @auth()
-                    @if (Auth::user()->is_admin)
-                        <li class="nav-item">
-                            <a class="{{ Route::is('admin.dashboard') ? 'active' : '' }} nav-link"
-                               href="{{ route('admin.dashboard') }} ">Admin
-                            </a>
-                        </li>
-                    @endif
+{{--                    @if (Auth::user()->is_admin)--}}
+{{--                        <li class="nav-item">--}}
+{{--                            <a class="{{ Route::is('admin.dashboard') ? 'active' : '' }} nav-link"--}}
+{{--                               href="{{ route('admin.dashboard') }} ">Admin--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
+{{--                    @endif--}}
                     <li class="nav-item me-2">
                         <a class="{{ Route::is('profile') ? 'active' : '' }}
                         nav-link"
