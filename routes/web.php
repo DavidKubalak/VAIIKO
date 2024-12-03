@@ -1,18 +1,21 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FeedController;
+use App\Http\Controllers\IdeaController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
+// DASHBOARD
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
 
 // AUTH
-
 Route::group(['middleware' => 'guest'], function() {
 
     Route::get('/register', [AuthController::class , 'register'] )->name('register');
@@ -26,3 +29,32 @@ Route::group(['middleware' => 'guest'], function() {
 });
 
 Route::post('/logout', [AuthController::class , 'logout'] )->middleware('auth')->name('logout');
+
+// IDEAS
+Route::post('/ideas', [IdeaController::class , 'store'] )->name('ideas.store');
+
+Route::get('/ideas/{idea}', [IdeaController::class , 'show'] )->name('ideas.show');
+
+Route::get('/ideas/{idea}/edit', [IdeaController::class , 'edit'] )->name('ideas.edit')->middleware('auth');
+
+Route::put('/ideas/{idea}', [IdeaController::class , 'update'] )->name('ideas.update')->middleware('auth');
+
+Route::delete('/ideas/{idea}', [IdeaController::class , 'destroy'] )->name('ideas.destroy')->middleware('auth');
+
+// COMMENTS
+Route::resource('ideas.comments', CommentController ::class)->only(['store'])->middleware('auth');
+
+// TERMS
+Route::get('/terms', function() { return view('terms'); } )->name('terms');
+
+// FEED
+Route::get('/feed', [FeedController::class, 'index'])->name('feed');
+
+
+// PROFILE
+
+//Route::resource('users', UserController::class)->only('edit', 'update')->middleware('auth');
+//
+//Route::resource('users', UserController::class)->only('show');
+//
+//Route::get('profile', [UserController::class, 'profile'])->middleware('auth')->name('profile');

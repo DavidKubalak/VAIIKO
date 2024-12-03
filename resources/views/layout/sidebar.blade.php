@@ -3,21 +3,18 @@
         <ul class="nav nav-link-secondary flex-column fw-bold gap-2">
             <li class="nav-item">
                 <a class="{{ Route::is('dashboard') ? 'text-white bg-primary rounded' : '' }}  nav-link"
-                   href="#">
+                   href="{{ route('dashboard') }}">
                     <span>Home</span></a>
-{{--                href="{{ route('dashboard') }}--}}
             </li>
             <li class="nav-item">
                 <a class="{{ Route::is('feed') ? 'text-white bg-primary rounded' : '' }}  nav-link"
-                   href="#">
+                   href="{{ route('feed') }}">
                     <span>Feed</span></a>
-{{--                href="{{ route('feed') }}--}}
             </li>
             <li class="nav-item">
                 <a class="{{ Route::is('terms') ? 'text-white bg-primary rounded' : '' }}  nav-link"
-                   href="#">
+                   href="{{ route('terms') }}">
                     <span>Terms</span></a>
-{{--                href="{{ route('terms') }}--}}
             </li>
         </ul>
     </div>

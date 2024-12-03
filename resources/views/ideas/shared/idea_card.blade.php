@@ -5,8 +5,8 @@
                 <img style="width:50px" class="me-2 avatar-sm rounded-circle" src="{{ $idea->user->getImageUrl() }}"
                      alt="{{ $idea->user->name }}">
                 <div>
-                    <h5 class="card-title mb-0"><a
-                            href="{{ route('users.show', $idea->user) }}">{{ $idea->user->name }}</a></h5>
+{{--                    <h5 class="card-title mb-0"><a--}}
+{{--                            href="{{ route('users.show', $idea->user) }}">{{ $idea->user->name }}</a></h5>--}}
                 </div>
             </div>
             <div class="d-flex">
@@ -47,7 +47,7 @@
             </p>
         @endif
         <div class="d-flex justify-content-between">
-            @include('ideas.shared.like_button')
+{{--            @include('ideas.shared.like_button')--}}
             <div>
                 <span class="fs-6 fw-light text-muted"> <span class="fas fa-clock"> </span>
                     {{ $idea->created_at->diffForHumans() }} </span>

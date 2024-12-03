@@ -13,12 +13,10 @@
                     <li class="nav-item">
                         <a class="{{ Route::is('login') ? 'active' : '' }} nav-link" aria-current="page"
                            href="{{ route('login') }}">Login</a>
-{{--                        href="{{ route('login') }}"--}}
                     </li>
                     <li class="nav-item">
                         <a class="{{ Route::is('register') ? 'active' : '' }} nav-link"
                            href="{{ route('register') }}">Register</a>
-{{--                        href="{{ route('register') }}"--}}
                     </li>
                 @endguest
                 @auth()
