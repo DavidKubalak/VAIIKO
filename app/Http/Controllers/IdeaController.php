@@ -51,12 +51,16 @@ class IdeaController extends Controller
         return redirect()->route('ideas.show', $idea->id)->with('success','Idea updated successfully!');
     }
 
-    public function destroy(Idea $idea) {
-        // -- USING POLICY --
-        $this->authorize('update', $idea);
+    public function destroy(Idea $idea)
+    {
+        $this->authorize('delete', $idea);
 
         $idea->delete();
 
-        return redirect()->route('dashboard')->with('success', 'Idea deleted successfully!');
+        return response()->json(['message' => 'Idea deleted successfully!']);
     }
+
+
+
+
 }
