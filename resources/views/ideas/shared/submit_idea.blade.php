@@ -16,13 +16,5 @@
     </div>
 @endauth
 @guest
-    <h4> {{('Login to share ideas') }} </h4>
-    <div class="row">
-        <form>
-            @csrf
-            <div class="mb-3">
-{{--                <div name="content" class="form-control" id="content" rows="3"></div>--}}
-            </div>
-        </form>
-    </div>
+    <h4>Login to share ideas</h4>
 @endguest

@@ -5,23 +5,23 @@
                 <img style="width:50px" class="me-2 avatar-sm rounded-circle" src="{{ $idea->user->getImageUrl() }}"
                      alt="{{ $idea->user->name }}">
                 <div>
-{{--                    <h5 class="card-title mb-0"><a--}}
-{{--                            href="{{ route('users.show', $idea->user) }}">{{ $idea->user->name }}</a></h5>--}}
+                    <h5 class="card-title mb-0"><a
+                            href="#">{{ $idea->user->name }}</a></h5>
                 </div>
             </div>
             <div class="d-flex">
                 <a class="ms-1 btn btn-success btn-sm" href="{{ route('ideas.show', $idea->id) }}"> View </a>
-                @auth()
-                    @can('update', $idea)
+                @auth
+                    @if($idea->canUpdate())
                         <a class="ms-1 btn btn-warning btn-sm" href="{{ route('ideas.edit', $idea->id) }}"> Edit </a>
-                    @endcan
-                    @can('delete', $idea)
-                        <form method="POST" action="{{ route('ideas.destroy', $idea->id) }}">
+                    @endif
+                    @if($idea->canDelete())
+                        <form method="POST" action="{{ route('ideas.destroy', $idea->id) }}" class="delete-form" data-id="{{ $idea->id }}">
                             @csrf
                             @method('delete')
                             <button class="ms-1 btn btn-danger btn-sm">Delete</button>
                         </form>
-                    @endcan
+                    @endif
                 @endauth
             </div>
         </div>

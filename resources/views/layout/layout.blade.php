@@ -18,7 +18,7 @@
 @include('layout.nav')
 <div class="container py-4">
     {{-- Page content goes here --}}
-    @yield('contant')
+    @yield('content')
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"

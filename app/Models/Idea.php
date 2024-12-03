@@ -16,23 +16,30 @@ class Idea extends Model
         'comments.user:id,name,image',
     ];
 
-//    protected $withCount = [
-//        'likes',
-//    ];
-
-    public function comments() {
+    public function comments()
+    {
         return $this->hasMany(Comment::class);
     }
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-//    public function likes() {
-//        return $this->belongsToMany(User::class,'idea_like')->withTimestamps();
-//    }
+    public function scopeSearch($query, $search = ''): void
+    {
+        $query->where('content', 'like', '%' . $search . '%');
+    }
 
-//    public function scopeSearch($query, $search = '') : void {
-//        $query->where('content', 'like', '%' . $search . '%');
-//    }
+    // Kontrola, či aktuálny používateľ môže upraviť nápad
+    public function canUpdate(): bool
+    {
+        return auth()->check() && $this->user_id === auth()->id();
+    }
+
+    // Kontrola, či aktuálny používateľ môže vymazať nápad
+    public function canDelete(): bool
+    {
+        return auth()->check() && $this->user_id === auth()->id();
+    }
 }

@@ -29,10 +29,6 @@ class AuthController extends Controller
             'password' => Hash::make($validated['password']),
         ]);
 
-//
-//        Auth::login($user);
-//        Mail::to($user->email)->send(new WelcomeEmail($user));
-
         return redirect()->route('dashboard')->with('success','Account created successfully!');
     }
 

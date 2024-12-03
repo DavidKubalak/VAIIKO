@@ -5,6 +5,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FeedController;
 use App\Http\Controllers\IdeaController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -43,6 +44,13 @@ Route::delete('/ideas/{idea}', [IdeaController::class , 'destroy'] )->name('idea
 
 // COMMENTS
 Route::resource('ideas.comments', CommentController ::class)->only(['store'])->middleware('auth');
+
+// USER
+Route::resource('users', UserController::class)->only('show');
+
+Route::resource('users', UserController::class)->only('edit', 'update')->middleware('auth');
+
+Route::get('profile', [UserController::class, 'profile'])->middleware('auth')->name('profile');
 
 // TERMS
 Route::get('/terms', function() { return view('terms'); } )->name('terms');
