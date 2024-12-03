@@ -12,12 +12,12 @@
                 @guest
                     <li class="nav-item">
                         <a class="{{ Route::is('login') ? 'active' : '' }} nav-link" aria-current="page"
-                           href="#">Login</a>
+                           href="{{ route('login') }}">Login</a>
 {{--                        href="{{ route('login') }}"--}}
                     </li>
                     <li class="nav-item">
                         <a class="{{ Route::is('register') ? 'active' : '' }} nav-link"
-                           href="#">Register</a>
+                           href="{{ route('register') }}">Register</a>
 {{--                        href="{{ route('register') }}"--}}
                     </li>
                 @endguest
@@ -32,7 +32,8 @@
                     <li class="nav-item me-2">
                         <a class="{{ Route::is('profile') ? 'active' : '' }}
                         nav-link"
-                           href="{{ route('profile') }} ">{{ Auth::user()->name }}</a>
+                           href="#">{{ Auth::user()->name }}</a>
+{{--                        href="{{ route('profile') }} "--}}
                     </li>
                     <li class="nav-item">
                         <form action="{{ route('logout') }}" method="post">
