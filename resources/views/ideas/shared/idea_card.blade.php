@@ -2,24 +2,24 @@
     <div class="px-3 pt-4 pb-2">
         <div class="d-flex align-items-center justify-content-between">
             <div class="d-flex align-items-center">
-                <img style="width:50px" class="me-2 avatar-sm rounded-circle" src="{{ $idea->user->getImageUrl() }}"
+                <img style="width:35px" class="me-2 avatar-sm rounded-circle" src="https://ui-avatars.com/api/?name={{ $idea->user->name }}&background=random&size=128"
                      alt="{{ $idea->user->name }}">
                 <div>
-                    <h5 class="card-title mb-0"><a
+                    <h5 class="mb-0 username-main"><a
                             href="#">{{ $idea->user->name }}</a></h5>
                 </div>
             </div>
             <div class="d-flex">
-                <a class="ms-1 btn btn-success btn-sm" href="{{ route('ideas.show', $idea->id) }}"> View </a>
+                <a class="ms-1 btn btn-view btn-sm" href="{{ route('ideas.show', $idea->id) }}"> View </a>
                 @auth
                     @if($idea->canUpdate())
-                        <a class="ms-1 btn btn-warning btn-sm" href="{{ route('ideas.edit', $idea->id) }}"> Edit </a>
+                        <a class="ms-1 btn btn-edit btn-sm" href="{{ route('ideas.edit', $idea->id) }}"> Edit </a>
                     @endif
                     @if($idea->canDelete())
                         <form method="POST" action="{{ route('ideas.destroy', $idea->id) }}" class="delete-form" data-id="{{ $idea->id }}">
                             @csrf
                             @method('delete')
-                            <button class="ms-1 btn btn-danger btn-sm">Delete</button>
+                            <button class="ms-1 btn btn-delete btn-sm">Delete</button>
                         </form>
                     @endif
                 @endauth

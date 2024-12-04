@@ -7,7 +7,7 @@
         <div class="col-3">
             @include('layout.sidebar')
         </div>
-        <div class="col-6">
+        <div class="col-6 terms-container content-area">
             <h4>Terms</h4>
             <div>
                 <p>

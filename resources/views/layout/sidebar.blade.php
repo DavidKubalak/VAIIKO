@@ -1,4 +1,4 @@
-<div class="card overflow-hidden">
+<div class="card sidebar overflow-hidden">
     <div class="card-body pt-3">
         <ul class="nav nav-link-secondary flex-column fw-bold gap-2">
             <li class="nav-item">
@@ -18,9 +18,8 @@
             </li>
         </ul>
     </div>
-    <div class="card-footer text-center py-2">
-        <a class="{{ Route::is('profile') ? 'text-white bg-primary rounded' : '' }} btn btn-link"
+    <div class="view-profile">
+        <a class="{{ Route::is('profile') ? 'text-white bg-primary rounded' : '' }} btn "
            href="#">View Profile </a>
-{{--        href="{{ route('profile') }}--}}
     </div>
 </div>

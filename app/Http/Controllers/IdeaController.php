@@ -29,8 +29,6 @@ class IdeaController extends Controller
     }
 
     public function edit(Idea $idea) {
-
-        // -- USING POLICY --
         $this->authorize('update', $idea);
 
         $edit = true;
@@ -38,8 +36,6 @@ class IdeaController extends Controller
     }
 
     public function update(Request $request, Idea $idea) {
-
-        // -- USING POLICY --
         $this->authorize('update', $idea);
 
         $valideted = $request->validate([

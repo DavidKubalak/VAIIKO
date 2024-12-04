@@ -7,7 +7,7 @@
         <div class="col-3">
             @include('layout.sidebar')
         </div>
-        <div class="col-6">
+        <div class="col-6 content-area">
             @forelse ($ideas as $idea)
                 <div class="mt-3">
                     @include('ideas.shared.idea_card')

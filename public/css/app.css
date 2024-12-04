@@ -33,7 +33,7 @@ body {
 
 .btn-edit {
     background-color: #ffca28;
-    border-color: #ffb300;
+    border-color: #ffca63;
     color: #fafafa;
 }
 
@@ -55,7 +55,7 @@ body {
 
 .btn-post {
     background-color: #17a2b8;
-    border-color: #138496;
+    border-color: #178a9e;
     color:  #fafafa;
 }
 
@@ -64,12 +64,37 @@ body {
     color: #ffffff;;
 }
 
-.nav-link {
+.custom-nav-link {
+    display: block;
+    padding-top: 4px;
+    padding-left: 2px;
+    color: #ffffff;
+    text-decoration: none;
+    background-color: transparent;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
+
+}
+
+.custom-nav-link:hover {
+    color: #a1a1a1;
+}
+
+.sidebar-link {
+    text-decoration: none;
+    background-color: transparent;
     color: #ffffff;
 }
 
+.sidebar-link:hover {
+    color: #a1a1a1;
+}
+
+.nav-link {
+    color: #000000;
+}
+
 .nav-link:hover {
-    color: #cdcdcd;
+    color: #a1a1a1;
 }
 
 .username-main {
@@ -138,4 +163,15 @@ body {
 
 .terms-container li {
     margin-bottom: 1.5rem;
+}
+
+@media (max-width: 992px) {
+    .sidebar,
+    .top-users {
+        display: none;
+    }
+
+    .content-area {
+        width: 100%;
+    }
 }

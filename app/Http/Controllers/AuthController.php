@@ -13,10 +13,6 @@ class AuthController extends Controller
     }
 
     public function store(Request $request) {
-        // validate user data
-        // create the user
-        // redirect
-
         $validated = $request->validate([
             'name' => 'required|min:3|max:40',
             'email' => 'required|email|unique:users,email',

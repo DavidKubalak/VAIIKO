@@ -30,14 +30,11 @@ class Idea extends Model
     {
         $query->where('content', 'like', '%' . $search . '%');
     }
-
-    // Kontrola, či aktuálny používateľ môže upraviť nápad
     public function canUpdate(): bool
     {
         return auth()->check() && $this->user_id === auth()->id();
     }
 
-    // Kontrola, či aktuálny používateľ môže vymazať nápad
     public function canDelete(): bool
     {
         return auth()->check() && $this->user_id === auth()->id();

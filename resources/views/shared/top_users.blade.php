@@ -1,4 +1,4 @@
-<div class="card mt-3">
+<div class="card mt-3 top-users">
     <div class="card-header pb-0 border-0">
         <h5 class="">Top Users</h5>
     </div>

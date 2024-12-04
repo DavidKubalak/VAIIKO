@@ -10,7 +10,7 @@
                 @enderror
             </div>
             <div class="">
-                <button type="submit" class="btn btn-dark"> Share </button>
+                <button type="submit" class="btn btn-post"> Share </button>
             </div>
         </form>
     </div>

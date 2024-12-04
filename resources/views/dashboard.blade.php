@@ -4,10 +4,11 @@
 
 @section('content')
     <div class="row">
-        <div class="col-3">
+        <div class="col-lg-3 d-none d-lg-block">
             @include('layout.sidebar')
         </div>
-        <div class="col-6">
+
+        <div class="col-lg-6 content-area">
             @include('shared.success')
             @include('ideas.shared.submit_idea')
             <hr>
@@ -22,7 +23,8 @@
                 {{ $ideas->withQueryString()->links() }}
             </div>
         </div>
-        <div class="col-3">
+
+        <div class="col-lg-3 d-none d-lg-block">
             @include('shared.top_users')
         </div>
     </div>

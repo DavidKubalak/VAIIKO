@@ -1,38 +1,41 @@
 <nav class="navbar navbar-expand-lg bg-dark border-bottom border-bottom-dark ticky-top bg-body-tertiary"
      data-bs-theme="dark">
     <div class="container">
-        <a class="navbar-brand fw-light" href="{{ route('dashboard') }} "><span class="fas fa-brain me-1">
+        <a class="navbar-logo-text" href="{{ route('dashboard') }} "><span class="fas fa-brain me-1">
             </span>{{ config('app.name') }}</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <ul class="navbar-nav">
                 @guest
-                    <li class="nav-item">
-                        <a class="{{ Route::is('login') ? 'active' : '' }} nav-link" aria-current="page"
+                    <li class="nav-item me-2">
+                        <a class="{{ Route::is('login') ? 'active' : '' }} custom-nav-link" aria-current="page"
                            href="{{ route('login') }}">Login</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="{{ Route::is('register') ? 'active' : '' }} nav-link"
+                    <li class="nav-item me-2">
+                        <a class="{{ Route::is('register') ? 'active' : '' }} custom-nav-link"
                            href="{{ route('register') }}">Register</a>
                     </li>
                 @endguest
                 @auth()
-{{--                    @if (Auth::user()->is_admin)--}}
-{{--                        <li class="nav-item">--}}
-{{--                            <a class="{{ Route::is('admin.dashboard') ? 'active' : '' }} nav-link"--}}
-{{--                               href="{{ route('admin.dashboard') }} ">Admin--}}
-{{--                            </a>--}}
-{{--                        </li>--}}
-{{--                    @endif--}}
                     <li class="nav-item me-2">
                         <a class="{{ Route::is('profile') ? 'active' : '' }}
-                        nav-link"
+                        me-2 custom-nav-link"
                            href="#">{{ Auth::user()->name }}</a>
-{{--                        href="{{ route('profile') }} "--}}
                     </li>
+                @endauth
+                    <li class="nav-item d-lg-none mt-2">
+                        <a class="sidebar-link {{ Route::is('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}">Home</a>
+                    </li>
+                    <li class="nav-item d-lg-none mt-2">
+                        <a class="sidebar-link {{ Route::is('feed') ? 'active' : '' }}" href="{{ route('feed') }}">Feed</a>
+                    </li>
+                    <li class="nav-item d-lg-none mt-2 mb-2">
+                        <a class="sidebar-link {{ Route::is('terms') ? 'active' : '' }}" href="{{ route('terms') }}">Terms</a>
+                    </li>
+                @auth()
                     <li class="nav-item">
                         <form action="{{ route('logout') }}" method="post">
                             @csrf
