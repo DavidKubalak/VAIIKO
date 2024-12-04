@@ -21,10 +21,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     return response.json();
                 })
                 .then(data => {
-                    // Set success message in local storage
                     localStorage.setItem('successMessage', data.message);
 
-                    // Reload the page to show the updated list and message
                     location.reload();
                 })
                 .catch(error => {
@@ -34,7 +32,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Display the success message from local storage
     const successMessage = localStorage.getItem('successMessage');
     if (successMessage) {
         const alertContainer = document.querySelector('.col-6');
@@ -47,7 +44,6 @@ document.addEventListener('DOMContentLoaded', function () {
         `;
         alertContainer.insertBefore(alert, alertContainer.firstChild);
 
-        // Remove the message from local storage
         localStorage.removeItem('successMessage');
     }
 });

@@ -39,8 +39,7 @@ Route::get('/ideas/{idea}', [IdeaController::class , 'show'] )->name('ideas.show
 Route::get('/ideas/{idea}/edit', [IdeaController::class , 'edit'] )->name('ideas.edit')->middleware('auth');
 
 Route::put('/ideas/{idea}', [IdeaController::class , 'update'] )->name('ideas.update')->middleware('auth');
-//
-//Route::delete('/ideas/{idea}', [IdeaController::class , 'destroy'] )->name('ideas.destroy')->middleware('auth');
+
 
 // COMMENTS
 Route::resource('ideas.comments', CommentController ::class)->only(['store'])->middleware('auth');
