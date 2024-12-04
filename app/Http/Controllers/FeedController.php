@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 class FeedController extends Controller
 {
-    public function index()
+    public function index(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
     {
         $user = Auth::user();
 

@@ -8,13 +8,8 @@ use App\Http\Controllers\IdeaController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 // DASHBOARD
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-
 
 // AUTH
 Route::group(['middleware' => 'guest'], function() {
@@ -56,7 +51,6 @@ Route::get('/terms', function() { return view('terms'); } )->name('terms');
 
 // FEED
 Route::get('/feed', [FeedController::class, 'index'])->name('feed');
-
 
 // DELETE js
 Route::delete('/ideas/{idea}', [IdeaController::class, 'destroy'])->name('ideas.destroy');

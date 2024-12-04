@@ -22,7 +22,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 })
                 .then(data => {
                     localStorage.setItem('successMessage', data.message);
-
                     location.reload();
                 })
                 .catch(error => {
@@ -34,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const successMessage = localStorage.getItem('successMessage');
     if (successMessage) {
-        const alertContainer = document.querySelector('.col-6');
+        const alertContainer = document.querySelector('.content-area');
         const alert = document.createElement('div');
         alert.className = 'alert alert-success alert-dismissible fade show';
         alert.role = 'alert';

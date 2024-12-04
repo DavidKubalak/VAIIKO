@@ -12,10 +12,12 @@ class Comment extends Model
         'content',
     ];
 
-    public function user() {
+    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
         return $this->belongsTo(User::class);
     }
-    public function idea() {
+    public function idea(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
         return $this->belongsTo(Idea::class);
     }
 }

@@ -8,11 +8,13 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    public function register() {
+    public function register(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
+    {
         return view('auth.register');
     }
 
-    public function store(Request $request) {
+    public function store(Request $request): \Illuminate\Http\RedirectResponse
+    {
         $validated = $request->validate([
             'name' => 'required|min:3|max:40',
             'email' => 'required|email|unique:users,email',
@@ -28,11 +30,13 @@ class AuthController extends Controller
         return redirect()->route('dashboard')->with('success','Account created successfully!');
     }
 
-    public function login() {
+    public function login(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
+    {
         return view('auth.login');
     }
 
-    public function authenticate(Request $request) {
+    public function authenticate(Request $request): \Illuminate\Http\RedirectResponse
+    {
         $validated = $request->validate([
             'email' => 'required|email',
             'password' => 'required|min:8',
@@ -48,7 +52,8 @@ class AuthController extends Controller
         ]);
     }
 
-    public function logout(Request $request) {
+    public function logout(Request $request): \Illuminate\Http\RedirectResponse
+    {
         auth()->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();

@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
-    public function store(Request $request, Idea $idea) {
+    public function store(Request $request, Idea $idea): \Illuminate\Http\RedirectResponse
+    {
         $validated = $request->validate([
             'content' => 'required|string|min:1|max:255',
         ]);
