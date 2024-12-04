@@ -21,20 +21,16 @@ class Idea extends Model
         'comments.user:id,name,image',
     ];
 
-    public function comments()
+    public function comments(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Comment::class);
     }
 
-    public function user()
+    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    public function scopeSearch($query, $search = ''): void
-    {
-        $query->where('content', 'like', '%' . $search . '%');
-    }
     public function canUpdate(): bool
     {
         return auth()->check() && $this->user_id === auth()->id();
