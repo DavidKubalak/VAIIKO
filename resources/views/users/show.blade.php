@@ -25,7 +25,7 @@
             </div>
         </div>
         <div class="col-lg-3 d-none d-lg-block">
-            @include('shared.top_users')
+            @include('shared.top_users', ['topUsers' => $topUsers])
         </div>
     </div>
 @endsection

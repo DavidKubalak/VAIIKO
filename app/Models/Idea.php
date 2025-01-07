@@ -40,4 +40,11 @@ class Idea extends Model
     {
         return auth()->check() && $this->user_id === auth()->id();
     }
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
+
+
 }

@@ -3,26 +3,26 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Comment extends Model
+class Like extends Model
 {
-    protected $fillable = [
-        'user_id',
-        'idea_id',
-        'content',
-    ];
+    use HasFactory;
+
+    protected $fillable = ['user_id', 'idea_id', 'comment_id'];
 
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(User::class);
     }
+
     public function idea(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Idea::class);
     }
 
-    public function likes()
+    public function comment(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->hasMany(Like::class);
+        return $this->belongsTo(Comment::class);
     }
 }

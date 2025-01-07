@@ -12,11 +12,11 @@ class FeedController extends Controller
         $user = Auth::user();
 
         if ($user) {
-            $ideas = Idea::where('user_id', '!=', $user->id)
+            $ideas = Idea::whereIn('user_id', $user->followings->pluck('id'))
                 ->latest()
                 ->paginate(3);
         } else {
-            $ideas = Idea::latest()->paginate(3);
+            $ideas = collect();
         }
 
         return view('feed', [

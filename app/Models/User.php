@@ -60,4 +60,27 @@ class User extends Authenticatable
         return $this->followings()->where('following_id', $user->id)->exists();
     }
 
+    public function likes(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Like::class);
+    }
+
+    public function likedIdeas()
+    {
+        return $this->belongsToMany(Idea::class, 'likes', 'user_id', 'idea_id');
+    }
+
+    public function likedComments()
+    {
+        return $this->belongsToMany(Comment::class, 'likes', 'user_id', 'comment_id');
+    }
+
+    public function receivedLikes(): int
+    {
+        $ideaLikes = $this->ideas()->withCount('likes')->get()->sum('likes_count');
+        $commentLikes = $this->comments()->withCount('likes')->get()->sum('likes_count');
+
+        return $ideaLikes + $commentLikes;
+    }
+
 }

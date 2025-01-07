@@ -5,7 +5,9 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FeedController;
 use App\Http\Controllers\IdeaController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TopUsersController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -62,3 +64,13 @@ Route::resource('users', UserController::class)->only(['show', 'edit', 'update']
 // FOLLOW & UNFOLLOW
 Route::post('/users/{user}/follow', [UserController::class, 'follow'])->name('users.follow')->middleware('auth');
 Route::post('/users/{user}/unfollow', [UserController::class, 'unfollow'])->name('users.unfollow')->middleware('auth');
+
+// LIKE
+Route::post('/ideas/{idea}/like', [LikeController::class, 'likeIdea'])->name('ideas.like');
+Route::post('/ideas/{idea}/unlike', [LikeController::class, 'unlikeIdea'])->name('ideas.unlike');
+Route::post('/comments/{comment}/like', [LikeController::class, 'likeComment'])->name('comments.like');
+Route::post('/comments/{comment}/unlike', [LikeController::class, 'unlikeComment'])->name('comments.unlike');
+
+
+// TOP_USERS
+Route::get('/top-users', [TopUsersController::class, 'index'])->name('top_users');

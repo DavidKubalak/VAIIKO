@@ -3,21 +3,15 @@
         <h5 class="">Top Users</h5>
     </div>
     <div class="card-body">
+        @forelse ($topUsers as $user)
             <div class="d-flex align-items-center mb-3">
-                <img style="width:35px" class="me-2 avatar-sm rounded-circle" src="https://ui-avatars.com/api/?name=Janka+K&background=random&size=128" alt="Janka K">
-                <p class="mb-0">Janka</p>
+                <img style="width:35px" class="me-2 avatar-sm rounded-circle"
+                     src="https://ui-avatars.com/api/?name={{ urlencode($user->name) }}&background=random&size=128"
+                     alt="{{ $user->name }}">
+                <p class="mb-0">{{ $user->name }}</p>
             </div>
-            <div class="d-flex align-items-center mb-3">
-                <img style="width:35px" class="me-2 avatar-sm rounded-circle" src="https://ui-avatars.com/api/?name=Marek&background=random&size=128" alt="Marek">
-                <p class="mb-0">Marek</p>
-            </div>
-            <div class="d-flex align-items-center mb-3">
-                <img style="width:35px" class="me-2 avatar-sm rounded-circle" src="https://ui-avatars.com/api/?name=Patrik&background=random&size=128" alt="Patrik">
-                <p class="mb-0">Patrik</p>
-            </div>
-            <div class="d-flex align-items-center mb-3">
-                <img style="width:35px" class="me-2 avatar-sm rounded-circle" src="https://ui-avatars.com/api/?name=Jaro&background=random&size=128" alt="Jaro">
-                <p class="mb-0">Jaro</p>
-            </div>
+        @empty
+            <p class="text-center mt-4">No active users found.</p>
+        @endforelse
     </div>
 </div>

@@ -37,7 +37,7 @@
             </div>
         </div>
         <div class="col-3">
-            @include('shared.top_users')
+            @include('shared.top_users', ['topUsers' => $topUsers])
         </div>
     </div>
 @endsection

@@ -5,7 +5,9 @@
                 <img style="width:35px" class="me-2 avatar-sm rounded-circle" src="https://ui-avatars.com/api/?name={{ $idea->user->name }}&background=random&size=128"
                      alt="{{ $idea->user->name }}">
                 <div>
-                    <h5 class="mb-0 username-main"> <a href="{{ route('users.show', $idea->user->id) }}">{{ $idea->user->name }}</a></h5>
+                    <h5 class="mb-0 username-main">
+                        <a href="{{ route('users.show', $idea->user->id) }}">{{ $idea->user->name }}</a>
+                    </h5>
                 </div>
             </div>
             <div class="d-flex">
@@ -45,10 +47,30 @@
                 {{ $idea->content }}
             </p>
         @endif
-        <div class="d-flex justify-content-between">
+        <div class="d-flex justify-content-between align-items-center">
             <div>
-                <span class="fs-6 fw-light text-muted"> <span class="fas fa-clock"> </span>
-                    {{ $idea->created_at->diffForHumans() }} </span>
+                <span class="fs-6 fw-light text-muted">
+                    <span class="fas fa-clock"> </span> {{ $idea->created_at->diffForHumans() }}
+                </span>
+            </div>
+            <div>
+                @auth
+                    @if (auth()->user()->likedIdeas->contains($idea->id))
+                        <form method="POST" action="{{ route('ideas.unlike', $idea->id) }}" style="display: inline;">
+                            @csrf
+                            <button type="submit" class="btn btn-link p-0 m-0 align-baseline text-danger">
+                                <span class="fas fa-heart"></span>
+                            </button>
+                        </form>
+                    @else
+                        <form method="POST" action="{{ route('ideas.like', $idea->id) }}" style="display: inline;">
+                            @csrf
+                            <button type="submit" class="btn btn-link p-0 m-0 align-baseline text-muted">
+                                <span class="far fa-heart"></span>
+                            </button>
+                        </form>
+                    @endif
+                @endauth
             </div>
         </div>
         @include('ideas.shared.comments_box')
