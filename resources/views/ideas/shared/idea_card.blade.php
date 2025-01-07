@@ -5,8 +5,7 @@
                 <img style="width:35px" class="me-2 avatar-sm rounded-circle" src="https://ui-avatars.com/api/?name={{ $idea->user->name }}&background=random&size=128"
                      alt="{{ $idea->user->name }}">
                 <div>
-                    <h5 class="mb-0 username-main"><a
-                            href="#">{{ $idea->user->name }}</a></h5>
+                    <h5 class="mb-0 username-main"> <a href="{{ route('users.show', $idea->user->id) }}">{{ $idea->user->name }}</a></h5>
                 </div>
             </div>
             <div class="d-flex">

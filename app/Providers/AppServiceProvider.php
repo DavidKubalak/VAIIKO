@@ -26,5 +26,11 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrap();
         Gate::policy(Idea::class, IdeaPolicy::class);
     }
+
+    protected $policies = [
+        \App\Models\Idea::class => \App\Policies\IdeaPolicy::class,
+        \App\Models\User::class => \App\Policies\UserPolicy::class,
+    ];
+
 }
 

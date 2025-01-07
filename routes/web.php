@@ -5,6 +5,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FeedController;
 use App\Http\Controllers\IdeaController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,7 +36,6 @@ Route::get('/ideas/{idea}/edit', [IdeaController::class , 'edit'] )->name('ideas
 
 Route::put('/ideas/{idea}', [IdeaController::class , 'update'] )->name('ideas.update')->middleware('auth');
 
-
 // COMMENTS
 Route::resource('ideas.comments', CommentController ::class)->only(['store'])->middleware('auth');
 
@@ -55,5 +55,10 @@ Route::get('/feed', [FeedController::class, 'index'])->name('feed');
 // DELETE js
 Route::delete('/ideas/{idea}', [IdeaController::class, 'destroy'])->name('ideas.destroy');
 
+// PROFILE
+Route::get('/profile', [UserController::class, 'profile'])->middleware('auth')->name('profile');
+Route::resource('users', UserController::class)->only(['show', 'edit', 'update'])->middleware('auth');
 
-
+// FOLLOW & UNFOLLOW
+Route::post('/users/{user}/follow', [UserController::class, 'follow'])->name('users.follow')->middleware('auth');
+Route::post('/users/{user}/unfollow', [UserController::class, 'unfollow'])->name('users.unfollow')->middleware('auth');
