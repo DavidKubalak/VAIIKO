@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\User;
@@ -22,12 +21,15 @@ class AuthController extends Controller
         ]);
 
         $user = User::create([
-            'name'=> $validated['name'],
-            'email'=> $validated['email'],
+            'name' => $validated['name'],
+            'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
         ]);
 
-        return redirect()->route('dashboard')->with('success','Account created successfully!');
+        // Automatické prihlásenie po registrácii
+        auth()->login($user);
+
+        return redirect()->route('dashboard')->with('success', 'Account created and logged in successfully!');
     }
 
     public function login(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
@@ -48,12 +50,10 @@ class AuthController extends Controller
             return redirect()->route('dashboard')->with('success', 'Logged in successfully!');
         }
 
-        return redirect()->route('login')->withErrors([
+        return redirect()->route('login')->withInput($request->except('password'))->withErrors([
             'email' => "No matching user found with provided email and password!",
         ]);
     }
-
-
 
     public function logout(Request $request): \Illuminate\Http\RedirectResponse
     {
@@ -61,6 +61,7 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('dashboard')->with('success','Logged out successfully!');
+        return redirect()->route('dashboard')->with('success', 'Logged out successfully!');
     }
 }
+

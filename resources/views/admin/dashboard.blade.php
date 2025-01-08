@@ -4,10 +4,10 @@
 
 @section('content')
     <div class="row">
-        <div class="col-3">
+        <div class="col-lg-3 d-none d-lg-block">
             @include('admin.shared.sidebar')
         </div>
-        <div class="col-9">
+        <div class="col-lg-9 content-area">
             <h1> Admin Dashboard </h1>
             <div class="row mt-4">
                 <div class="col-sm-6 col-md-4">

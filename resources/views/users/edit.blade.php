@@ -4,10 +4,10 @@
 
 @section('content')
     <div class="row">
-        <div class="col-3">
+        <div class="col-lg-3 d-none d-lg-block">
             @include('layout.sidebar')
         </div>
-        <div class="col-6">
+        <div class="col-lg-6 content-area">
             @include('shared.success')
             <div class="mt-3">
                 @include('users.shared.user_edit_card')

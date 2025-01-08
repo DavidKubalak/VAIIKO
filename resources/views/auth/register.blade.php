@@ -10,14 +10,14 @@
                 <h3 class="text-center text-dark">Register</h3>
                 <div class="form-group">
                     <label for="name" class="text-dark">Name:</label><br>
-                    <input type="text" name="name" id="name" class="form-control" required minlength="3" maxlength="40">
+                    <input type="text" name="name" id="name" class="form-control" required minlength="3" maxlength="40" value="{{ old('name') }}">
                     @error('name')
                     <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="form-group mt-3">
                     <label for="email" class="text-dark">Email:</label><br>
-                    <input type="email" name="email" id="email" class="form-control" required>
+                    <input type="email" name="email" id="email" class="form-control" required value="{{ old('email') }}">
                     @error('email')
                     <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
                     @enderror
