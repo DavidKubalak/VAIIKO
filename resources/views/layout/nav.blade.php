@@ -20,22 +20,16 @@
                     </li>
                 @endguest
                 @auth()
+                    @if (Auth::user()->is_admin)
+                        <li class="nav-item me-2">
+                            <a class="{{ Route::is('admin.dashboard') ? 'active' : '' }} custom-nav-link"
+                               href="{{ route('admin.dashboard') }}">Admin</a>
+                        </li>
+                    @endif
                     <li class="nav-item me-2">
-                        <a class="{{ Route::is('profile') ? 'active' : '' }}
-                        me-2 custom-nav-link"
+                        <a class="{{ Route::is('profile') ? 'active' : '' }} me-2 custom-nav-link"
                            href="{{ route('users.show', Auth::user()->id) }}">{{ Auth::user()->name }}</a>
                     </li>
-                @endauth
-                    <li class="nav-item d-lg-none mt-2">
-                        <a class="sidebar-link {{ Route::is('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}">Home</a>
-                    </li>
-                    <li class="nav-item d-lg-none mt-2">
-                        <a class="sidebar-link {{ Route::is('feed') ? 'active' : '' }}" href="{{ route('feed') }}">Feed</a>
-                    </li>
-                    <li class="nav-item d-lg-none mt-2 mb-2">
-                        <a class="sidebar-link {{ Route::is('terms') ? 'active' : '' }}" href="{{ route('terms') }}">Terms</a>
-                    </li>
-                @auth()
                     <li class="nav-item">
                         <form action="{{ route('logout') }}" method="post">
                             @csrf
@@ -43,6 +37,15 @@
                         </form>
                     </li>
                 @endauth
+                <li class="nav-item d-lg-none mt-2">
+                    <a class="sidebar-link {{ Route::is('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}">Home</a>
+                </li>
+                <li class="nav-item d-lg-none mt-2">
+                    <a class="sidebar-link {{ Route::is('feed') ? 'active' : '' }}" href="{{ route('feed') }}">Feed</a>
+                </li>
+                <li class="nav-item d-lg-none mt-2 mb-2">
+                    <a class="sidebar-link {{ Route::is('terms') ? 'active' : '' }}" href="{{ route('terms') }}">Terms</a>
+                </li>
             </ul>
         </div>
     </div>

@@ -5,9 +5,9 @@ namespace App\Providers;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\View; // Import View
+use Illuminate\Support\Facades\View;
 use App\Models\Idea;
-use App\Models\User; // Import User
+use App\Models\User;
 use App\Policies\IdeaPolicy;
 
 class AppServiceProvider extends ServiceProvider
@@ -25,10 +25,18 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // Use Bootstrap pagination
         Paginator::useBootstrap();
+
+        // Define policies
         Gate::policy(Idea::class, IdeaPolicy::class);
 
-        // Sprístupnenie top užívateľov pre všetky pohľady
+        // Define "admin" ability
+        Gate::define('admin', function (User $user) {
+            return $user->is_admin; // Assuming `is_admin` is a boolean column in your `users` table
+        });
+
+        // Make top users available in all views
         View::composer('*', function ($view) {
             $topUsers = User::withCount(['ideas', 'comments'])
                 ->orderByDesc('ideas_count')
@@ -45,5 +53,3 @@ class AppServiceProvider extends ServiceProvider
         \App\Models\User::class => \App\Policies\UserPolicy::class,
     ];
 }
-
-

@@ -22,7 +22,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 })
                 .then(data => {
                     localStorage.setItem('successMessage', data.message);
-                    location.reload();
+                    // Presmerovanie na root cestu (dashboard)
+                    window.location.href = '/';
                 })
                 .catch(error => {
                     console.error('Error:', error.message);

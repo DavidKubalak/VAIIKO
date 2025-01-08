@@ -10,6 +10,8 @@ use Illuminate\Notifications\Notifiable;
 
 /**
  * @method static create(array $array)
+ * @method static count()
+ * @method static latest()
  */
 class User extends Authenticatable
 {

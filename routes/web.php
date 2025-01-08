@@ -7,9 +7,13 @@ use App\Http\Controllers\FeedController;
 use App\Http\Controllers\IdeaController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\TopUsersController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Admin\IdeaController as AdminIdeaController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
+use App\Http\Controllers\Admin\CommentController as AdminCommentController;
+
 
 // DASHBOARD
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
@@ -71,6 +75,10 @@ Route::post('/ideas/{idea}/unlike', [LikeController::class, 'unlikeIdea'])->name
 Route::post('/comments/{comment}/like', [LikeController::class, 'likeComment'])->name('comments.like');
 Route::post('/comments/{comment}/unlike', [LikeController::class, 'unlikeComment'])->name('comments.unlike');
 
-
-// TOP_USERS
-Route::get('/top-users', [TopUsersController::class, 'index'])->name('top_users');
+// ADMIN
+Route::middleware(['auth', 'can:admin'])->prefix('/admin')->as('admin.')->group(function() {
+    Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard');
+    Route::resource('users', AdminUserController::class)->only(['index', 'destroy', 'show', 'edit', 'update']);
+    Route::resource('ideas', AdminIdeaController::class)->only(['index', 'destroy', 'show', 'edit', 'update']);
+    Route::resource('comments', AdminCommentController::class)->only('index', 'destroy');
+});

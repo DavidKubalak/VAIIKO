@@ -44,13 +44,16 @@ class AuthController extends Controller
 
         if (auth()->attempt($validated)) {
             $request->session()->regenerate();
-            return redirect()->route('dashboard')->with('success','Logged in successfully!');
+
+            return redirect()->route('dashboard')->with('success', 'Logged in successfully!');
         }
 
         return redirect()->route('login')->withErrors([
-            'email'=> "No matching user found with provided email and password!",
+            'email' => "No matching user found with provided email and password!",
         ]);
     }
+
+
 
     public function logout(Request $request): \Illuminate\Http\RedirectResponse
     {

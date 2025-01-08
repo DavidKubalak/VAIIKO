@@ -13,4 +13,10 @@ class UserPolicy
     {
         return $currentUser->is_admin || $currentUser->id === $user->id;
     }
+
+    public function admin(User $user): bool
+    {
+        return $user->is_admin;
+    }
+
 }

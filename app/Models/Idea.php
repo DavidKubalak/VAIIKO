@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static create(array $validated)
  * @method static latest()
  * @method static where(string $string, string $string1, $id)
+ * @method static count()
  */
 class Idea extends Model
 {
