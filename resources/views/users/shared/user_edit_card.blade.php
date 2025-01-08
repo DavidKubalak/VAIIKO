@@ -5,7 +5,7 @@
             @method('put')
             <div class="d-flex align-items-center justify-content-between">
                 <div class="d-flex align-items-center">
-                    <img style="width:35px" class="me-2 avatar-sm rounded-circle" src="https://ui-avatars.com/api/?name={{ $user->name }}&background=random&size=128"
+                    <img style="width:35px" class="me-3 avatar-sm rounded-circle" src="{{ $user->getImageUrl() }}"
                          alt="{{ $user->name }}">
                     <div>
                         <input name="name" value="{{ $user->name }}" type="text" class="form-control">
@@ -14,20 +14,19 @@
                         @enderror
                     </div>
                 </div>
-                <div>
-                    @auth
-                        @if (Auth::id() === $user->id)
-                            <a href="{{ route('users.show', $user->id) }}">View</a>
-                        @endif
-                    @endauth
-                </div>
             </div>
             <div class="mt-3">
-                <label for="">Profile Picture</label>
+                <label for="image">Profile Picture</label>
                 <input name="image" class="form-control" type="file">
                 @error('image')
                 <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
                 @enderror
+                @if($user->image)
+                <div class="mt-4 d-flex align-items-center">
+                    <input type="checkbox" id="remove_image" name="remove_image" value="1" class="mb-3 me-4">
+                    <label for="remove_image" class="mt-0">Remove current profile picture</label>
+                </div>
+                @endif
             </div>
             <div class="px-2 mt-4">
                 <h5 class="fs-5"> Bio : </h5>

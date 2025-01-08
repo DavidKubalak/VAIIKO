@@ -83,4 +83,12 @@ class User extends Authenticatable
         return $ideaLikes + $commentLikes;
     }
 
+    public function getImageUrl() {
+        if ($this->image) {
+            return asset('storage/' . $this->image); // Vygeneruje správnu URL na verejný disk
+        }
+
+        return "https://ui-avatars.com/api/?name={$this->name}&background=random&size=128";
+
+    }
 }

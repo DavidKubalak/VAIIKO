@@ -19,7 +19,6 @@
         </ul>
     </div>
     <div class="view-profile">
-        <a class="{{ Route::is('profile') ? 'text-white bg-primary rounded' : '' }} btn"
-           href="{{ route('profile') }}">View Profile</a>
+        <a class="view_profile_btn" href="{{ route('profile') }}">View Profile</a>
     </div>
 </div>

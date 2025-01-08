@@ -33,13 +33,14 @@ class Idea extends Model
 
     public function canUpdate(): bool
     {
-        return auth()->check() && $this->user_id === auth()->id();
+        return auth()->check() && (auth()->id() === $this->user_id || auth()->user()->is_admin);
     }
 
     public function canDelete(): bool
     {
-        return auth()->check() && $this->user_id === auth()->id();
+        return auth()->check() && (auth()->id() === $this->user_id || auth()->user()->is_admin);
     }
+
 
     public function likes()
     {

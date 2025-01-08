@@ -23,7 +23,7 @@
                     <li class="nav-item me-2">
                         <a class="{{ Route::is('profile') ? 'active' : '' }}
                         me-2 custom-nav-link"
-                           href="#">{{ Auth::user()->name }}</a>
+                           href="{{ route('users.show', Auth::user()->id) }}">{{ Auth::user()->name }}</a>
                     </li>
                 @endauth
                     <li class="nav-item d-lg-none mt-2">

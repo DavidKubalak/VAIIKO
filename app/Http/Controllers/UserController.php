@@ -7,6 +7,7 @@ use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -15,14 +16,21 @@ class UserController extends Controller
     /**
      * Display the current authenticated user's profile.
      */
-    public function profile() {
-        return $this->show(auth()->user());
+    public function profile(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
+    {
+        $user = auth()->user();
+
+        if (!$user instanceof \App\Models\User) {
+            abort(403, 'Unauthorized access.');
+        }
+
+        return $this->show($user);
     }
 
     /**
      * Display a specific user's profile.
      */
-    public function show(User $user)
+    public function show(User $user): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
     {
         $ideas = $user->ideas()->paginate(5);
         return view('users.show', compact('user', 'ideas'));
@@ -30,8 +38,9 @@ class UserController extends Controller
 
     /**
      * Edit a user's profile.
+     * @throws AuthorizationException
      */
-    public function edit(User $user)
+    public function edit(User $user): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
     {
         $this->authorize('update', $user);
 
@@ -41,8 +50,9 @@ class UserController extends Controller
 
     /**
      * Update a user's profile.
+     * @throws AuthorizationException
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, User $user): \Illuminate\Http\RedirectResponse
     {
         $this->authorize('update', $user);
 
@@ -52,8 +62,23 @@ class UserController extends Controller
             'image' => 'nullable|image|max:2048',
         ]);
 
-        if ($request->hasFile('image')) {
+        // Spracovanie profilového obrázku
+        if ($request->has('image')) {
+            // Odstránenie starého obrázku
+            if ($user->image) {
+                \Storage::disk('public')->delete($user->image);
+            }
+
+            // Uloženie nového obrázku
             $validated['image'] = $request->file('image')->store('profile_images', 'public');
+        }
+
+        // Odstránenie profilového obrázku, ak je zaškrtnuté "Remove"
+        if ($request->has('remove_image') && $request->remove_image == 1) {
+            if ($user->image) {
+                \Storage::disk('public')->delete($user->image);
+            }
+            $validated['image'] = null;
         }
 
         $user->update($validated);

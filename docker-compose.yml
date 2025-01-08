@@ -8,6 +8,8 @@ services:
         volumes:
             - .:/var/www
             - ./docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
+            - ./storage/app/public:/var/www/storage/app/public
+            - ./public/storage:/var/www/public/storage
         ports:
             - "8000:8000"
         depends_on:

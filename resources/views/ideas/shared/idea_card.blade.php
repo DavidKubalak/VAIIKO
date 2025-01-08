@@ -2,7 +2,7 @@
     <div class="px-3 pt-4 pb-2">
         <div class="d-flex align-items-center justify-content-between">
             <div class="d-flex align-items-center">
-                <img style="width:35px" class="me-2 avatar-sm rounded-circle" src="https://ui-avatars.com/api/?name={{ $idea->user->name }}&background=random&size=128"
+                <img style="width:35px" class="me-3 avatar-sm rounded-circle" src="{{ $idea->user->getImageUrl() }}"
                      alt="{{ $idea->user->name }}">
                 <div>
                     <h5 class="mb-0 username-main">
