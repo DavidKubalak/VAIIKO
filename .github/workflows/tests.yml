@@ -6,8 +6,6 @@ on:
       - master
       - '*.x'
   pull_request:
-  schedule:
-    - cron: '0 0 * * *'
 
 permissions:
   contents: read
@@ -37,11 +35,17 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --prefer-dist --no-interaction --no-progress
 
-      - name: Copy environment file
-        run: cp .env.example .env
+      - name: Set up SQLite for tests
+        run: |
+          cp .env.example .env
+          echo "DB_CONNECTION=sqlite" >> .env
+          echo "DB_DATABASE=:memory:" >> .env
 
       - name: Generate app key
         run: php artisan key:generate
+
+      - name: Run migrations for tests
+        run: php artisan migrate --force
 
       - name: Execute tests
         run: vendor/bin/phpunit
