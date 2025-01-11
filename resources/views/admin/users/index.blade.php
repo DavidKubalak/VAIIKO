@@ -12,10 +12,9 @@
             @include('shared.success')
             <table class="table table-striped mt-3">
                 <thead class="table-dark">
-                <th>ID</th>
                 <th>Name</th>
                 <th>Email</th>
-                <th>Joinet At</th>
+                <th>Created At</th>
                 <th>View</th>
                 <th>Edit</th>
                 <th>Delete</th>
@@ -23,7 +22,6 @@
                 <tbody>
                 @foreach ($users as $user)
                     <tr>
-                        <td>{{ $user->id }}</td>
                         <td>
                             <a href="{{ route('users.show', $user) }}">{{ $user->name }}</a>
                         </td>
@@ -39,7 +37,6 @@
                             <form action="{{ route('admin.users.destroy', $user) }}" method="POST">
                                 @csrf
                                 @method('delete')
-                                {{-- <a href="#" onclick="this.closest('form').submit();return false;">Delete</a> --}}
                                 <button class="ms-1 btn btn-danger btn-sm" type="submit">Delete</button>
                             </form>
                         </td>

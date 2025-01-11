@@ -1,8 +1,8 @@
-version: '3.8'
-
 services:
     app:
-        image: php:8.2-fpm
+        build:
+            context: .
+            dockerfile: ./docker/php/Dockerfile
         container_name: laravel_app
         working_dir: /var/www
         volumes:
@@ -17,6 +17,7 @@ services:
         command: php artisan serve --host=0.0.0.0 --port=8000
         networks:
             - laravel
+
 
     artisan:
         image: php:8.2-cli

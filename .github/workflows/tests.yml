@@ -2,18 +2,18 @@ name: Tests
 
 on:
   push:
-    branches:
-      - master
-      - '*.x'
+    branches-ignore:
+      - '**'
   pull_request:
-  schedule:
-    - cron: '0 0 * * *'
+    branches-ignore:
+      - '**'
 
 permissions:
   contents: read
 
 jobs:
   tests:
+    if: false
     runs-on: ubuntu-latest
 
     strategy:

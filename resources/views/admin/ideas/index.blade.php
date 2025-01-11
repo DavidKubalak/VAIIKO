@@ -12,7 +12,6 @@
             @include('shared.success')
             <table class="table table-striped mt-3">
                 <thead class="table-dark">
-                <th>ID</th>
                 <th>User</th>
                 <th>Content</th>
                 <th>Created At</th>
@@ -23,7 +22,6 @@
                 <tbody>
                 @foreach ($ideas as $idea)
                     <tr>
-                        <td>{{ $idea->id }}</td>
                         <td>
                             <a href="{{ route('users.show', $idea->user) }}">{{ $idea->user->name }}</a>
                         </td>
@@ -39,7 +37,6 @@
                             <form action="{{ route('admin.ideas.destroy', $idea) }}" method="POST">
                                 @csrf
                                 @method('delete')
-                                {{-- <a href="#" onclick="this.closest('form').submit();return false;">Delete</a> --}}
                                 <button class="ms-1 btn btn-danger btn-sm" type="submit">Delete</button>
                             </form>
                         </td>
