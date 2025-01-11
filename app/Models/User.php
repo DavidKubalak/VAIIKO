@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -85,12 +84,12 @@ class User extends Authenticatable
         return $ideaLikes + $commentLikes;
     }
 
-    public function getImageUrl() {
+    public function getImageUrl(): string
+    {
         if ($this->image) {
-            return asset('storage/' . $this->image); // Vygeneruje správnu URL na verejný disk
+            return asset($this->image);
         }
-
         return "https://ui-avatars.com/api/?name={$this->name}&background=random&size=128";
-
     }
+
 }

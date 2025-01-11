@@ -65,18 +65,20 @@ class UserController extends Controller
         // Spracovanie profilového obrázku
         if ($request->has('image')) {
             // Odstránenie starého obrázku
-            if ($user->image) {
-                \Storage::disk('public')->delete($user->image);
+            if ($user->image && file_exists(public_path($user->image))) {
+                unlink(public_path($user->image));
             }
 
-            // Uloženie nového obrázku
-            $validated['image'] = $request->file('image')->store('profile_images', 'public');
+            // Uloženie nového obrázku do priečinka public/uploads
+            $fileName = time() . '_' . $request->file('image')->getClientOriginalName();
+            $request->file('image')->move(public_path('uploads'), $fileName);
+            $validated['image'] = 'uploads/' . $fileName;
         }
 
         // Odstránenie profilového obrázku, ak je zaškrtnuté "Remove"
         if ($request->has('remove_image') && $request->remove_image == 1) {
-            if ($user->image) {
-                \Storage::disk('public')->delete($user->image);
+            if ($user->image && file_exists(public_path($user->image))) {
+                unlink(public_path($user->image));
             }
             $validated['image'] = null;
         }
@@ -85,6 +87,7 @@ class UserController extends Controller
 
         return redirect()->route('users.show', $user)->with('success', 'Profile updated successfully!');
     }
+
 
     public function follow(User $user): \Illuminate\Http\RedirectResponse
     {
