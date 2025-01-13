@@ -46,12 +46,12 @@ class User extends Authenticatable
         return $this->hasMany(Comment::class);
     }
 
-    public function followers()
+    public function followers(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(User::class, 'user_follows', 'following_id', 'follower_id');
     }
 
-    public function followings()
+    public function followings(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(User::class, 'user_follows', 'follower_id', 'following_id');
     }
@@ -66,12 +66,12 @@ class User extends Authenticatable
         return $this->hasMany(Like::class);
     }
 
-    public function likedIdeas()
+    public function likedIdeas(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Idea::class, 'likes', 'user_id', 'idea_id');
     }
 
-    public function likedComments()
+    public function likedComments(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Comment::class, 'likes', 'user_id', 'comment_id');
     }

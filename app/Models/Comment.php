@@ -25,7 +25,7 @@ class Comment extends Model
         return $this->belongsTo(Idea::class);
     }
 
-    public function likes()
+    public function likes(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Like::class);
     }

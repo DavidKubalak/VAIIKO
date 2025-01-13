@@ -26,7 +26,6 @@ class AuthController extends Controller
             'password' => Hash::make($validated['password']),
         ]);
 
-        // Automatické prihlásenie po registrácii
         auth()->login($user);
 
         return redirect()->route('dashboard')->with('success', 'Account created and logged in successfully!');

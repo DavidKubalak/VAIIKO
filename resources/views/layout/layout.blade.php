@@ -24,7 +24,6 @@
 <body>
 @include('layout.nav')
 <div class="container py-4">
-    {{-- Page content goes here --}}
     @yield('content')
 </div>
 

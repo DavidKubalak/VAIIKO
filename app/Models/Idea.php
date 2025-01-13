@@ -42,8 +42,7 @@ class Idea extends Model
         return auth()->check() && (auth()->id() === $this->user_id || auth()->user()->is_admin);
     }
 
-
-    public function likes()
+    public function likes(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Like::class);
     }

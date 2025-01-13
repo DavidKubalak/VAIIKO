@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class LikeController extends Controller
 {
-    public function likeIdea(Idea $idea)
+    public function likeIdea(Idea $idea): \Illuminate\Http\RedirectResponse
     {
         $user = auth()->user();
 
@@ -27,27 +27,24 @@ class LikeController extends Controller
         return back()->with('success', 'Idea liked successfully.');
     }
 
-    public function unlikeIdea(Idea $idea)
+    public function unlikeIdea(Idea $idea): \Illuminate\Http\RedirectResponse
     {
         $user = auth()->user();
 
-        // Odstráni lajky pre konkrétny nápad
         $user->likes()->where('idea_id', $idea->id)->delete();
 
         return back()->with('success', 'Idea unliked successfully.');
     }
 
 
-    public function likeComment(Comment $comment)
+    public function likeComment(Comment $comment): \Illuminate\Http\RedirectResponse
     {
         $user = auth()->user();
 
-        // Skontroluje, či užívateľ už lajkol komentár
         if ($user->likes()->where('comment_id', $comment->id)->exists()) {
             return back()->with('error', 'You already liked this comment.');
         }
 
-        // Vytvorí nový like
         Like::create([
             'user_id' => $user->id,
             'comment_id' => $comment->id,
@@ -56,11 +53,10 @@ class LikeController extends Controller
         return back()->with('success', 'Comment liked successfully.');
     }
 
-    public function unlikeComment(Comment $comment)
+    public function unlikeComment(Comment $comment): \Illuminate\Http\RedirectResponse
     {
         $user = auth()->user();
 
-        // Odstráni like pre konkrétny komentár
         $user->likes()->where('comment_id', $comment->id)->delete();
 
         return back()->with('success', 'Comment unliked successfully.');

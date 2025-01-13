@@ -12,31 +12,17 @@ use App\Policies\IdeaPolicy;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     */
-    public function register(): void
-    {
-        //
-    }
 
-    /**
-     * Bootstrap any application services.
-     */
     public function boot(): void
     {
-        // Use Bootstrap pagination
         Paginator::useBootstrap();
 
-        // Define policies
         Gate::policy(Idea::class, IdeaPolicy::class);
 
-        // Define "admin" ability
         Gate::define('admin', function (User $user) {
-            return $user->is_admin; // Assuming `is_admin` is a boolean column in your `users` table
+            return $user->is_admin;
         });
 
-        // Make top users available in all views
         View::composer('*', function ($view) {
             $topUsers = User::withCount(['ideas', 'comments'])
                 ->orderByDesc('ideas_count')
